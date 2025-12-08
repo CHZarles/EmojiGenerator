@@ -1,6 +1,6 @@
-# Emoji Face 😄 Image Generator
+# Emoji 😄 Image Generator
 
-##  Dataset
+##  数据集
 
 
 一个专为生成任务整理的小型高质量 emoji 脸部数据集。
@@ -11,7 +11,7 @@
 
 数据集已上传到[kaggle - emoji_face](https://www.kaggle.com/datasets/chzarles/emoji-face)
 
-### Structure
+### 文件结构
 
 数据集里包含一些图片和一个自制的标签文件`labels.json`。
 
@@ -48,12 +48,19 @@ EMOJI_FACE/
 >在进行无条件生成训练时，我发现模型总是习惯于生成某一类特定的 Emoji，这就忽略了数据集中大量丰富的特征信息。由于 Emoji 中的组合特征（如眼型、嘴型、肤色）非常丰富，因此我计划先对图像进行一些细粒度的**特征打标**，在训练过程中用这些标签转化为**条件向量Embedding** 输入模型。这样不仅能强制模型学习所有数据的分布，防止信息丢失，还能在生成时实现对特征的自由组合。
 
 
+# 训练效果
 
-## Train
+这是模型训练结果
+#### 针对每个单独特征来进行采样
+![overview](./images/single_feature.png)
+
+#### 使用每个图片id对应的特征组合采样 (1 ~ 94)
+具体来说就是使用训练集图片的组合特征来采样
+![overview](./images/combine_features.png)
 
 
 
+# 实现
 
-![overview](./images/fm_image.png)
 
-## Reference
+
