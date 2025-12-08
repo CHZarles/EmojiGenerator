@@ -62,5 +62,8 @@ EMOJI_FACE/
 
 # 实现
 
+参考下面两个文件
+- [common_utils.py](./common_utils.py)
+- [flow_matching_conditional.ipynb](./flow-matching-images.ipynb)
 
 
