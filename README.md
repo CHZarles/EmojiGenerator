@@ -84,3 +84,19 @@ streamlit run streamlit_app.py
 
 
 实验发现使用训练集已有的特征组合能得到较高质量的生成结果；但如果输入任意未在训练集中出现的特征组合，模型通常只能还原出图像的轮廓和若干局部特征，难以生成语义一致且细节丰富的图像。
+
+
+# Future work: 分析对比ddpm版本
+代码实现: [ddpm_conditional.ipynb](./ddpm_conditional.ipynb)
+
+![overview](./images/ddpm_combine_features.png)
+
+# 权重获取
+模型最优的权重文件和训练过程中的log以及权重更新时的采样记录都有保存。 
+[下载](https://pan.baidu.com/s/1t9rjTq2F1wkUhw43aEhRgA?pwd=s7db) 后直接解压到项目根目录即可运行
+```
+project_root
+├── ddpm_conditional_checkpoints
+├── fm_conditional_checkpoints
+
+```
