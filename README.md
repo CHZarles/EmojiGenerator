@@ -1,4 +1,6 @@
-# Emoji 😄 Image Generator
+# Emoji 😄 Image Generator 
+
+这是一个用flow matching训练的emoji图片生成器
 
 ##  数据集
 
@@ -7,6 +9,8 @@
 - Emoji face只收录了人脸形式的 emoji （对应emoji序号1~94, 可参考 [emoji_number.sjon](./emoji_number.json)）
 - 已将透明背景的图片转成白色背景,方便模型拟合
 - 每个emoji表情包含多个平台的版本 (Apple、Google ...) 
+
+
 数据集已上传到[kaggle - emoji_face](https://www.kaggle.com/datasets/chzarles/emoji-face)
 
 
@@ -65,5 +69,18 @@ EMOJI_FACE/
 参考下面两个文件
 - [common_utils.py](./common_utils.py)
 - [flow_matching_conditional.ipynb](./flow-matching-images.ipynb)
+    - 这是使用flow matching方法的实现
 
 
+#  组合特征测试
+为了测试这个生成器是否能够将不同细粒度的脸部特征（例如眼型、嘴型、肤色等）正确组合并生成一致且自然的表情图像，项目提供了一个streamlit应用来测试不同的特征组合作为条件向量时的采样效果。
+
+```bash
+streamlit run streamlit_app.py 
+```
+
+![image](./images/combine_custom_features.png)
+> 这是 glasses_sunglasses +smile_open +red_hot_angry 的组合
+
+
+实验发现使用训练集已有的特征组合能得到较高质量的生成结果；但如果输入任意未在训练集中出现的特征组合，模型通常只能还原出图像的轮廓和若干局部特征，难以生成语义一致且细节丰富的图像。
