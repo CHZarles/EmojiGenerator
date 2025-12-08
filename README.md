@@ -54,6 +54,6 @@ EMOJI_FACE/
 
 
 
-![overview](.images/fm_image.png)
+![overview](./images/fm_image.png)
 
 ## Reference
