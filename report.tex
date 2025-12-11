@@ -120,7 +120,64 @@ ACL proceedings, and contains instructions for using the
 
 \section{Introduction}
 
-TODO
+% understand the math behind Image generation 
+
+\subsection{Image Generation is Sampling}
+
+For computer , a picture is usually represented as a matrix of pixels. 
+For instance, a 16x16 handwritten digit image can be represented as a 16x16 matrix, where each element's value denotes the corresponding pixel's grey scale value (0–255).
+This two-dimensional matrix can be flattened into a 256-dimensional vector $x \in \mathbb{R}^{256}$. 
+In this case, one class of images ,such as the handwritten digit 3 , can be regarded as a data distribution within a high-dimensional space.
+And any specific image instance is actually a point sampled from this distribution. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/figure1.png}
+    \caption{MNIST dataset samples of digit 3, 4, 8}
+    \label{fig:mnist_samples}
+\end{figure}
+
+
+Taking the MNIST dataset (downsampled to 16×16) as an example, all digits 3, 4, and 8 within the dataset belong to distinct distributions. By statistically analysing their grayscale mean values across different positions, the distribution characteristics of each digit can be derived. See Figure~\ref{fig:mnist_samples} for details.
+This figure clearly demonstrates that the pixel distributions of digits 3, 4, and 8 differ across positions.
+The data has been normalised here, with higher values indicating greater pixel intensity at that location, represented by darker shades.
+What's more, a picture created by applying the mean grayscale values at each positions 
+looks like the digit itself, as shown in Figure~\ref{fig:mnist_mean}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/figure2.png}
+    \caption{Mean images of digit 3, 4, 8 in MNIST dataset}
+    \label{fig:mnist_mean}
+\end{figure}
+ 
+In this situation, image generation can be viewed as a sampling a vector from a specific distribution in high-dimensional space.
+And the vector sampled more close to the distribution's mean will generate an image more similar to the digit itself.
+In the perspective of statistic , a vector sampled have a higher probobility belong to the "handwritten digit 3" distribution ,
+it may looks more likely similar to a handwritten digit 3.
+
+
+\section {Flow Matching Framework}
+
+The idea of using neural networks to generate images is using neural networks to learn the transformation from a simple distribution (e.g., Gaussian distribution) 
+to the target image distribution.
+
+Flow Matching is a idea that modeling the transform between two distributions as a physical process , like particles flowing in a fluid. 
+Under this idea,  a neural network is trained to learn the speed and direction of "particles" moving during the transformation space.
+
+Based on physical knowledge, particle's position can be obtained by integration the velocity field. This integration process is equivalent to the sampling process.
+This approach shares some similarities with diffusion models, which also achieve sampling from noise to images by learning an inverse process.
+However, diffusion models accomplish sampling by learning a stochastic process, whereas flow matching models learn a smooth, physically meaningful velocity field.
+The latter approach follows a more explicit path,achieving equivalent results typically requires fewer sampling steps compared to diffusion models.
+
+
+\section{Experiments}
+
+To better understand the training process under flow matching framework, 
+We conduct a experiments on a custom dataset and
+ observe how the model learns the transformation from Gaussian noise to target image distribution.
+
+\subsection{Dataset}
 
 
 \section*{Author Contributions}
